@@ -3,6 +3,7 @@ import {Component } from '@angular/core';
 
 //ng g c {name} for component
 //ng g s {name} for services
+//ng g d {name} for directive
 
 @Component({
     selector: 'courses', // <courses>
