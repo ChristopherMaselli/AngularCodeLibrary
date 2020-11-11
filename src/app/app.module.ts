@@ -1,3 +1,4 @@
+import { GithubFollowersService } from './services/github-followers.service';
 import { AppErrorHandler } from './common/app-error-handler';
 import { SignupFormComponent } from './signup-form/signup-form.component';
 import { SummaryPipe } from './summary.pipe';
@@ -53,6 +54,7 @@ import { GithubFollowersComponent } from './github-followers/github-followers.co
   providers: [
     PostService,
     CoursesService,
+    GithubFollowersService,
     { provide: ErrorHandler, useClass: AppErrorHandler }
   ],
   bootstrap: [AppComponent]
