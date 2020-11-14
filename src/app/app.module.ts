@@ -8,6 +8,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ErrorHandler, NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
+import { RouterModule } from '@Angular/router'
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -24,6 +25,10 @@ import { ChangePasswordComponent } from './change-password/change-password.compo
 import { PostsComponent } from './posts/posts.component';
 import { PostService } from './services/post.service';
 import { GithubFollowersComponent } from './github-followers/github-followers.component';
+import { NavbarComponent } from './navbar/navbar.component';
+import { HomeComponent } from './home/home.component';
+import { NotFoundComponent } from './not-found/not-found.component';
+import { GithubProfileComponent } from './github-profile/github-profile.component';
 
 @NgModule({
   declarations: [
@@ -42,14 +47,40 @@ import { GithubFollowersComponent } from './github-followers/github-followers.co
     NewCourseFormComponentComponent,
     ChangePasswordComponent,
     PostsComponent,
-    GithubFollowersComponent
+    GithubFollowersComponent,
+    NavbarComponent,
+    HomeComponent,
+    GithubProfileComponent,
+    NotFoundComponent,
   ],
   imports: [
     BrowserModule,
     FormsModule,
     AppRoutingModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    RouterModule.forRoot([
+      { 
+        path: '',
+        component: HomeComponent
+      },
+      { 
+        path: 'followers/:id/:username', //SPECIFICS MUST COME FIRST!
+        component: GithubProfileComponent
+      },
+      { 
+        path: 'followers', //GENERICS LAST!
+        component: GithubFollowersComponent
+      },
+      { 
+        path: 'posts', 
+        component: PostsComponent
+      },
+      { 
+        path: '**', //PLACE CATCH-ALLS LAST!
+        component: NotFoundComponent 
+      },
+    ])
   ],
   providers: [
     PostService,
